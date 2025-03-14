@@ -1,8 +1,12 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from game import GameEnv
 import pygame
 import numpy as np
 
-# Change from DDQN to TabularTD agent
 from model.tabular_td_agent import TabularTDAgent
 
 from collections import deque
@@ -24,7 +28,7 @@ td_agent = TabularTDAgent(alpha=0.1, gamma=0.99, n_actions=9, epsilon=0.05,
                             epsilon_end=0.05, epsilon_dec=1.0, state_bins=5)
 
 # Load the trained model
-td_agent.load_model('td_agent_qtable.pkl')
+td_agent.load_model()
 print(f"Model loaded with {len(td_agent.q_table)} states in Q-table")
 
 scores = []
